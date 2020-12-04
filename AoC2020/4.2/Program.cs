@@ -8,11 +8,6 @@ namespace _4._1
 {
     class Passport
     {
-        public Passport()
-        {
-        }
-
-
         public string _byr = null;
         public string _iyr = null;
         public string _eyr = null;
@@ -70,15 +65,15 @@ namespace _4._1
                 string type = value.Substring(value.Length - 2, 2);
                 int res;
                 if
-                    (
-                (type == "in" || type == "cm") &&
-                int.TryParse(value.Substring(0, value.Length - 2), out res) == true
+                (
+                    (type == "in" || type == "cm") &&
+                    int.TryParse(value.Substring(0, value.Length - 2), out res) == true
                 )
                 {
                     if (
                             (type == "cm" && res >= 150 && res <= 193) ||
                             (type == "in" && res >= 59 && res <= 76)
-                        )
+                       )
                     {
                         _hgt = value;
                     }
@@ -143,7 +138,6 @@ namespace _4._1
             var lines = File.ReadLines("in.txt").ToArray();
             List<Passport> passports = new List<Passport>();
 
-
             int i = 0;
             while (i < lines.Length)
             {
@@ -155,7 +149,6 @@ namespace _4._1
                     foreach (var field in fields)
                     {
                         var data = field.Split(":");
-
                         switch (data[0])
                         {
                             case "byr": pp.byr = data[1]; break;
@@ -168,11 +161,9 @@ namespace _4._1
                             case "cid": pp.cid = data[1]; break;
                         }
                     }
-
                     i++;
                 }
                 passports.Add(pp);
-
                 i++;
             }
 
@@ -188,7 +179,6 @@ namespace _4._1
 
             Console.WriteLine(noOfValid);
             Console.ReadKey();
-
         }
     }
 }
