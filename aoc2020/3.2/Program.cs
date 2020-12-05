@@ -5,7 +5,6 @@ using System.Linq;
 
 namespace _3._1
 {
-
     struct Coordinate
     {
         public int x;
