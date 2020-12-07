@@ -82,7 +82,6 @@ namespace _4._1
 
             Console.WriteLine(noOfValid);
             Console.ReadKey();
-
         }
     }
 }

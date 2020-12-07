@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace _4._1
+namespace _4._2
 {
     class Passport
     {
