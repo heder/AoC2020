@@ -22,9 +22,9 @@ namespace _10._2
             for (int i = 0; i < adapters.Length; i++)
             {
                 // Check which previous adapters are reachable. Accumulate running sum.
-                if ((i - 1) >= 0 && adapters[i - 1] >= adapters[i] - 3) runningSum[i] += Convert.ToInt64(runningSum[i - 1]);
-                if ((i - 2) >= 0 && adapters[i - 2] >= adapters[i] - 3) runningSum[i] += Convert.ToInt64(runningSum[i - 2]);
-                if ((i - 3) >= 0 && adapters[i - 3] >= adapters[i] - 3) runningSum[i] += Convert.ToInt64(runningSum[i - 3]);
+                if ((i - 1) >= 0 && adapters[i - 1] >= adapters[i] - 3) runningSum[i] += runningSum[i - 1];
+                if ((i - 2) >= 0 && adapters[i - 2] >= adapters[i] - 3) runningSum[i] += runningSum[i - 2];
+                if ((i - 3) >= 0 && adapters[i - 3] >= adapters[i] - 3) runningSum[i] += runningSum[i - 3];
             }
 
             Console.WriteLine(runningSum[runningSum.Length - 1]);
