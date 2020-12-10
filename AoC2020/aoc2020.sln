@@ -37,9 +37,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intcode", "Intcode2\Intcode
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "8.2", "8.2\8.2.csproj", "{156DE289-FBFB-44ED-8E10-267F1B474D8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9.1", "9.1\9.1.csproj", "{11B2B8D7-4D2E-4EA5-8395-2048D66BA1C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "9.1", "9.1\9.1.csproj", "{11B2B8D7-4D2E-4EA5-8395-2048D66BA1C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9.2", "9.2\9.2.csproj", "{DCCA2E7C-1DEF-4700-8834-A1AAD9BE5E0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "9.2", "9.2\9.2.csproj", "{DCCA2E7C-1DEF-4700-8834-A1AAD9BE5E0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.1", "10.1\10.1.csproj", "{0BBDCDF6-FF11-477B-9FDB-24E837A0A7F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +125,10 @@ Global
 		{DCCA2E7C-1DEF-4700-8834-A1AAD9BE5E0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCCA2E7C-1DEF-4700-8834-A1AAD9BE5E0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCCA2E7C-1DEF-4700-8834-A1AAD9BE5E0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BBDCDF6-FF11-477B-9FDB-24E837A0A7F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BBDCDF6-FF11-477B-9FDB-24E837A0A7F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BBDCDF6-FF11-477B-9FDB-24E837A0A7F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BBDCDF6-FF11-477B-9FDB-24E837A0A7F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
