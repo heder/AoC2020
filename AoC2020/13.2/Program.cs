@@ -18,7 +18,7 @@ namespace _13._2
             schedules = data[0].Replace("x", "-1").Split(",").Select(f => Convert.ToInt32(f)).ToArray();
 
             highestBus = schedules.Max();
-            highestIndex = schedules.FirstOrDefault(f => f == highestBus);
+            highestIndex = schedules.First(f => f == highestBus);
 
             int threads = 24;
             start = DateTime.Now;
