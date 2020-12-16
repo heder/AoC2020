@@ -112,10 +112,6 @@ namespace _16._2
                         fields[f] = matchedRules.First().Name;
                         rules.Remove(matchedRules.First());
                     }
-                    else
-                    {
-                        Console.WriteLine("Multiple matches, not touching this one yet");
-                    }
                 }
             }
 
