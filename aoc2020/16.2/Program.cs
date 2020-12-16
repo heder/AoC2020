@@ -21,10 +21,10 @@ namespace _16._2
             List<Rule> rules = new List<Rule>();
             int[] myTicket;
             List<int[]> tickets = new List<int[]>();
-            int[][] ticketarray;
             List<int[]> invalidTickets = new List<int[]>();
-
             List<int> invalidFields = new List<int>();
+
+            string[] fields;
 
             int i = 0;
             while (lines[i] != "")
@@ -60,65 +60,75 @@ namespace _16._2
             while (i < lines.Length)
             {
                 // Tickets
-
                 tickets.Add(lines[i].Split(",").Select(f => Convert.ToInt32(f)).ToArray());
                 i++;
             }
-
-
 
             foreach (var item in tickets)
             {
                 foreach (var field in item)
                 {
-                    int noValid = 0;
-                    int noInvalid = 0;
-                    foreach (var rule in rules)
-                    {
-                        if (field >= rule.RangeA[0] && field <= rule.RangeA[1] ||
-                            field >= rule.RangeB[0] && field <= rule.RangeB[1])
-                        {
-                            // Valid
-                            noValid++;
-                        }
-                        else
-                        {
-                            // Not valid
-                            noInvalid++;
-                        }
-                    }
+                    var valid = rules.Where(f => field >= f.RangeA[0] && field <= f.RangeA[1] ||
+                            field >= f.RangeB[0] && field <= f.RangeB[1]).Count();
 
-                    if (noValid > 0)
-                    {
-                        // We're fine
-                    }
-                    else
+                    if (valid == 0)
                     {
                         invalidFields.Add(field);
                         invalidTickets.Add(item);
                     }
-
                 }
             }
 
             var validTickets = tickets.Except(invalidTickets);
 
-            // TODO
-            for (int i = 0; i < myTicket.Length; i++)
-            {
-                List<int> fieldNos = new List<int>();
-                // Create list of all field x
-                for (int t = 0; t < tickets.Count(); t++)
-                {
-                    fieldNos.Add(tickets[j][i]);
-                }
+            fields = new string[myTicket.Length];
 
-                // Check for rule that satisfies field
-                rules.All
+            while (rules.Count > 0)
+            {
+                // Loop each field
+                for (int f = 0; f < myTicket.Length; f++)
+                {
+                    List<int> fieldNos = new List<int>();
+
+                    // Create list of all field x
+                    foreach (var t in validTickets)
+                    {
+                        fieldNos.Add(t[f]);
+                    }
+
+                    List<Rule> matchedRules = new List<Rule>();
+                    foreach (var r in rules)
+                    {
+                        // Check which rule that satisfies this specific tickets field on all tickets
+                        if (fieldNos.All(f => f >= r.RangeA[0] && f <= r.RangeA[1] || f >= r.RangeB[0] && f <= r.RangeB[1]) == true)
+                        {
+                            // Field i matches rule r
+                            matchedRules.Add(r);
+                        }
+                    }
+
+                    if (matchedRules.Count() == 1)
+                    {
+                        fields[f] = matchedRules.First().Name;
+                        rules.Remove(matchedRules.First());
+                    }
+                    else
+                    {
+                        Console.WriteLine("Multiple matches, not touching this one yet");
+                    }
+                }
             }
 
+            long prod = 1;
+            for (int ff = 0; ff < myTicket.Length; ff++)
+            {
+                if (fields[ff].StartsWith("departure"))
+                {
+                    prod *= myTicket[ff];
+                }
+            }
 
-            Console.WriteLine(invalidFields.Sum());
+            Console.WriteLine(prod);
             Console.ReadKey();
         }
     }
