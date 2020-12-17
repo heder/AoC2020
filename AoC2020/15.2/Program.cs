@@ -26,6 +26,8 @@ namespace b15
     {
         static void Main(string[] args)
         {
+            DateTime s = DateTime.Now;
+
             var start = File.ReadLines("in.txt").First().Split(",").Select(f => Convert.ToInt64(f)).ToArray();
             long iterations = 30000000;
 
@@ -85,6 +87,7 @@ namespace b15
                 }
             }
 
+            Console.WriteLine(DateTime.Now - s);
             Console.WriteLine(lastNum);
             Console.ReadKey();
         }
