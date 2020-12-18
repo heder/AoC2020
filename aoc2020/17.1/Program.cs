@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -18,8 +17,6 @@ namespace a17
         {
             var lines = File.ReadLines("in.txt").ToArray();
 
-            //int x = 50;
-            //int y = 50;
             int z = 50;
 
             xbound[0] = 49; xbound[1] = 58;
@@ -45,10 +42,6 @@ namespace a17
             {
                 DumpWorld();
 
-                //world[50, 50, 50] = true;
-
-                //Buffer.BlockCopy(world, 0, compWorld, 0, sizeof(bool) * 100 * 100 * 100);
-
                 Array.Copy(world, compWorld, 100 * 100 * 100);
 
                 for (int i = xbound[0]; i <= xbound[1]; i++)
@@ -62,11 +55,10 @@ namespace a17
                             if (world[i, j, k] == true && (nb == 2 || nb == 3))
                             {
                                 // Cube remains active
-                                //world[i, j, k] = true;
                             }
                             else
                             {
-                                // Else, cube becomes inactive
+                                // Cube becomes inactive
                                 world[i, j, k] = false;
                             }
 

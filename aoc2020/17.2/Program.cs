@@ -106,22 +106,18 @@ namespace b17
                         }
                         Console.WriteLine();
                     }
-                    Console.WriteLine();
-                    Console.WriteLine("-------");
-                    Console.WriteLine();
+
+                    Console.WriteLine("\n-------\n");
                 }
-                Console.WriteLine();
-                Console.WriteLine("****");
-                Console.WriteLine();
+
+                Console.WriteLine("\n****\n");
             }
         }
 
         static int GetNoOfNeighbours(int x, int y, int z, int w)
         {
-            // Check neighbours
             int sum = 0;
 
-            // Front plane
             for (int i = x - 1; i <= x + 1; i++)
             {
                 for (int j = y - 1; j <= y + 1; j++)
@@ -132,7 +128,7 @@ namespace b17
                         {
                             if ((i == x && j == y && k == z && l == w) == false) // Skip "me"
                             {
-                                if (compWorld[i, j, k, l] == true) sum++; // Current plane
+                                if (compWorld[i, j, k, l] == true) sum++;
                             }
                         }
                     }
