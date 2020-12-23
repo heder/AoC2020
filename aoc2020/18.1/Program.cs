@@ -1,113 +1,107 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 
 namespace _18._1
 {
     class Program
     {
-        public class Node
+        public static char[] ex;
+        public static ulong pos;
+
+        public static void Main(string[] args)
         {
-            public Node(Node p)
+            ulong sum = 0;
+            var lines = File.ReadLines("in.txt");
+            foreach (var line in lines)
             {
-                parent = p;
+                ex = line.Replace(" ", "").Trim().ToCharArray();
+
+                //ex = new char[ex2.Length + 2];
+                //ex[0] = '0';
+                //ex[1] = '+';
+
+                //Array.Copy(ex2, 0, ex, 2, ex2.Length);
+
+                ulong s = CalcExpression();
+
+                Console.WriteLine(s);
+
+                pos = 0;
+                sum += s;
+
             }
 
-            public string op;
+            Console.WriteLine(sum);
 
-            public int res = -1;
-
-            public Node p;
-
-            public Node a;
-            public Node b;
+            Console.ReadKey();
         }
 
-
-
-        static void Main(string[] args)
+        public static ulong CalcExpression()
         {
-            var lines = File.ReadLines("in.txt").ToArray();
+            ulong sum = 0;
 
-            foreach (var item in lines)
+            //if (ex[pos] == '(')
+            //{
+            //    sum = 0;
+            //    pos++;
+            //    sum += CalcExpression();
+            //}
+            //else
+            //{ 
+            //    sum = Convert.ToUInt64(ex[pos].ToString());
+            //    pos++;
+            //}
+
+            while (pos < (uint)ex.Length)
             {
-                var line = item.Replace(" ", "").Trim().Reverse().ToArray();
 
-                //string literal = "";
-                int arg = 0;
-                Node root = new Node();
-                Node currentNode = root;
-                int i = 0;
-                for (i = 0; i < line.Length; i++)
+                switch (ex[pos])
                 {
-                    switch (line[i])
-                    {
-                        case '+':
-                            currentNode.op = "+";
-                            currentNode.b = new Node();
-                            currentNode = currentNode.b;
-                            break;
+                    case '(':
+                        pos++;
+                        sum += CalcExpression();
+                        break;
 
-                        case '*':
-                            currentNode.op = "*";
-                            currentNode.b = new Node();
-                            currentNode = currentNode.b;
-                            break;
+                    case ')':
+                        return sum;
 
-                        case '(':
-                            currentNode.b = new Node();
-                            currentNode.a = new Node();
-                            currentNode = currentNode.a;
-                            break;
+                    case '+':
+                        pos++;
+                        if (ex[pos] == '(')
+                        {
+                            pos++;
+                            sum += CalcExpression();
+                        }
+                        else
+                        {
+                            sum += Convert.ToUInt64(ex[pos].ToString());
+                        }
 
-                        case ')':
-                            // Unwind to first with b==null;
-                            while ()
-                            break;
+                        break;
 
-                        default:
-                            currentNode.a = new Node();
-                            currentNode.a.res = Convert.ToInt32(line[i].ToString());
-                            break;
-                    };
+                    case '*':
+                        pos++;
+                        if (ex[pos] == '(')
+                        {
+                            pos++;
+                            sum *= CalcExpression();
+                        }
+                        else
+                        {
+                            sum *= Convert.ToUInt64(ex[pos].ToString());
+                        }
+
+                        break;
+
+                    default:
+                        sum = Convert.ToUInt64(ex[pos].ToString());
+                        break;
                 }
 
-                currentNode.b = new Node();
-                currentNode.op = "+";
-                currentNode.b.res = 0;
-
-                int x = Calc(root);
-
-                Console.WriteLine(x);
-
+                pos++;
             }
 
-            Console.WriteLine();
-
-        }
-
-
-
-        public static int Calc(Node n)
-        {
-
-            if (n.b.res == -1)
-            {
-                n.b.res = Calc(n.b);
-            }
-
-            if (n.a.res == -1)
-            {
-                n.a.res = Calc(n.a);
-            }
-
-
-
-            if (n.op == "+") return n.a.res + n.b.res;
-            if (n.op == "*") return n.a.res * n.b.res;
-
-            return 0;
-
+            return sum;
         }
     }
 }
